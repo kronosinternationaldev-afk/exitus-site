@@ -97,28 +97,30 @@ const ScrollFrame = ({ children }) => {
 
 
 const IMGS = {
-  exitusLogo: "/assets/exitusLogo.jpg",
-  diagram: "/assets/diagram.jpg",
-  oQueE: "/assets/oQueE.jpg",
-  appMockup: "/assets/appMockup.png",
-  roteiro: "/assets/roteiro.jpg",
-  revisao: "/assets/revisao.jpg",
-  bloom: "/assets/bloom.jpg",
-  tioBento: "/assets/tioBento.png",
-  questoes: "/assets/questoes.jpg",
-  logo: "/assets/logo.png",
-  g_dashboard_full: "/assets/g_dashboard_full.png",
-  g_roteiro: "/assets/g_roteiro.png",
-  g_revisao_conteudo: "/assets/g_revisao_conteudo.png",
-  g_questoes: "/assets/g_questoes.png",
-  g_quiz: "/assets/g_quiz.png",
-  g_tia_chris: "/assets/g_tia_chris.png",
-  g_tio_bento: "/assets/g_tio_bento.png",
-  g_provas: "/assets/g_provas.png",
-  g_materiais: "/assets/g_materiais.png",
-  g_revisao_aula: "/assets/g_revisao_aula.png",
-  dashboard: "/assets/dashboard.jpg",
-  christus: "/assets/christus.jpg",
+  exitusLogo: "./assets/exitusLogo.jpg",
+  diagram: "./assets/diagram.jpg",
+  oQueE: "./assets/oQueE.jpg",
+  appMockup: "./assets/appMockup.png",
+  roteiro: "./assets/roteiro.jpg",
+  revisao: "./assets/revisao.jpg",
+  bloom: "./assets/bloom.png",
+  tioBento: "./assets/tioBento.png",
+  questoes: "./assets/questoes.jpg",
+  logo: "./assets/logo.png",
+  g_dashboard_full: "./assets/g_dashboard_full.png",
+  g_roteiro: "./assets/g_roteiro.png",
+  g_revisao_conteudo: "./assets/g_revisao_conteudo.png",
+  g_questoes: "./assets/g_questoes.png",
+  g_quiz: "./assets/g_quiz.png",
+  g_tia_chris: "./assets/g_tia_chris.png",
+  g_tio_bento: "./assets/g_tio_bento.png",
+  g_provas: "./assets/g_provas.png",
+  g_materiais: "./assets/g_materiais.png",
+  g_revisao_aula: "./assets/g_revisao_aula.png",
+  dashboard: "./assets/dashboard.png",
+  christus: "./assets/christus.jpg",
+  christusWhite: "./assets/Logo-Christus-branco%20(1).png",
+  christusColor: "./assets/Logo-Christus-Colorida.png",
 };
 
 const C = { navy:"#050820", deep:"#0a0e2a", ink:"#121640", mag:"#7696DA", magL:"#8AABF0",
@@ -134,6 +136,8 @@ html{scroll-behavior:smooth}
 body{font-family:'Poppins',sans-serif;color:${C.text};background:${C.white};overflow-x:hidden;-webkit-font-smoothing:antialiased}
 #root{overflow-x:hidden;width:100%;max-width:100vw}
 section{overflow-x:hidden}
+input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus{-webkit-box-shadow:0 0 0 30px #0a0e2a inset !important;-webkit-text-fill-color:#ffffff !important;caret-color:#ffffff !important;transition:background-color 5000s ease-in-out 0s}
+input::placeholder{color:rgba(255,255,255,0.35)}
 .ff{font-family:'Sora',sans-serif}
 
 .grain{position:relative}
@@ -204,6 +208,7 @@ section{overflow-x:hidden}
 @media(max-width:768px){
   .mhide{display:none !important}
   .ham{display:flex !important}
+  .nav-logo{height:36px !important}
   .hero-t{font-size:clamp(26px,7vw,38px) !important;line-height:1.25 !important;text-align:center !important}
   .big-t{font-size:clamp(24px,6vw,34px) !important;line-height:1.25 !important}
   .sp{padding:80px 20px !important}
@@ -317,7 +322,7 @@ const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   useEffect(()=>{const h=()=>ss(window.scrollY>60);window.addEventListener("scroll",h);return()=>window.removeEventListener("scroll",h)},[]);
   useEffect(()=>{document.body.style.overflow=menuOpen?"hidden":"";return()=>{document.body.style.overflow=""}},[menuOpen]);
-  const links=[{l:"Solução",id:"solucao"},{l:"Como Funciona",id:"como-funciona"},{l:"Ciência",id:"neurociencia"},{l:"Segurança",id:"seguranca"},{l:"Plataforma",id:"galeria"},{l:"Resultados",id:"prova-social"},{l:"Contato",id:"contato"}];
+  const links=[{l:"Solução",id:"solucao"},{l:"Como Funciona",id:"como-funciona"},{l:"Ciência",id:"neurociencia"},{l:"Segurança",id:"seguranca"},{l:"Resultados",id:"prova-social"},{l:"Contato",id:"contato"}];
   const handleNav=(id)=>{setMenuOpen(false);setTimeout(()=>scroll(id),100)};
   return (
     <>
@@ -328,7 +333,7 @@ const Nav = () => {
       <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:200,background:s||menuOpen?"rgba(5,8,32,0.97)":"transparent",backdropFilter:s||menuOpen?"blur(28px)":"none",transition:"all .45s ease",padding:s?"8px 0":"20px 0",borderBottom:s?"1px solid #fff08":"none"}}>
         <div className="nav-pad" style={{maxWidth:1400,margin:"0 auto",padding:"0 40px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
           <div style={{cursor:"pointer",flexShrink:0}} onClick={()=>{setMenuOpen(false);window.scrollTo({top:0,behavior:"smooth"})}}>
-            <img src={IMGS.logo} alt="Exitus" style={{height:32}} />
+            <img src={IMGS.logo} alt="Exitus" className="nav-logo" style={{height:44}} />
           </div>
           <div className="mhide" style={{display:"flex",gap:20,alignItems:"center"}}>
             {links.map(n=>
@@ -368,15 +373,17 @@ const Hero = () => (
 
     <div className="g2 hero-inner" style={{maxWidth:1320,margin:"0 auto",padding:"60px 48px 120px",width:"100%",display:"grid",gridTemplateColumns:"1.2fr .8fr",gap:72,alignItems:"center",position:"relative",zIndex:3}}>
       <div className="mc">
-        <R delay={.08}>
-          <h1 className="ff hero-t" style={{fontSize:"clamp(36px,4.5vw,58px)",color:C.white,lineHeight:1.22,marginBottom:32,fontWeight:700}}>
-            O Ensino Pedagógico<br/>
-            <span style={{color:C.mag}}>Potencializado com IA e Neurociência.</span>
+        <R delay={.05}>
+          <p style={{fontSize:13,fontWeight:700,letterSpacing:3,textTransform:"uppercase",color:C.mag,marginBottom:20}}>Aprendizagem Acelerada &nbsp;|&nbsp; IA</p>
+        </R>
+        <R delay={.12}>
+          <h1 className="ff hero-t" style={{fontSize:"clamp(32px,4.5vw,54px)",color:C.white,lineHeight:1.22,marginBottom:32,fontWeight:700}}>
+            Uma plataforma que maximiza o aprendizado do aluno e estende o alcance do professor.
           </h1>
         </R>
-        <R delay={.18}>
+        <R delay={.2}>
           <p style={{fontSize:17,color:"#fffc",lineHeight:1.85,marginBottom:44,maxWidth:520,fontWeight:300}}>
-            A ferramenta que ajuda professores a ensinar melhor e potencializa o aprendizado de cada aluno individualmente a partir do plano pedagógico da escola.
+            Utilizando a IA com segurança e controle, respeitando os valores da escola e da família.
           </p>
         </R>
         <R delay={.26}>
@@ -408,7 +415,7 @@ const Hero = () => (
    MARQUEE — Discreto, elegante, não agressivo
    ══════════════════════════════════════════════════ */
 const Marquee = () => {
-  const items = ["Neurociência Aplicada","IA Pedagógica","Revisão Espaçada","Taxonomia de Bloom","Tecnologia Calma","Tutoria 24/7","Estudo Personalizado","Letramento Digital","Escola no Comando"];
+  const items = ["Aprendizagem Personalizada","IA com Segurança","Escola no Comando","Tutoria Inteligente 24/7","Estudo Adaptativo","Letramento Digital","Intencionalidade Pedagógica","Professor Potencializado","Neurociência Aplicada"];
   return (
     <div style={{background:`linear-gradient(90deg,${C.mag},${C.magL},${C.mag})`,padding:"16px 0",overflow:"hidden"}}>
       <div className="mq">
@@ -429,49 +436,44 @@ const Marquee = () => {
 const Problema = () => (
   <section id="problema" className="sp" style={{background:C.off,padding:"140px 48px",position:"relative",overflow:"hidden"}}>
     <div className="orb" style={{width:300,height:300,background:C.mag,top:"10%",right:"-8%",opacity:.03}} />
-    <div className="sec-center" style={{maxWidth:1200,margin:"0 auto",position:"relative",zIndex:1}}>
+    <div className="sec-center" style={{maxWidth:1100,margin:"0 auto",position:"relative",zIndex:1}}>
       <R><div className="tag">O Problema</div></R>
 
-      {/* 2 colunas: texto esquerda, desafios direita */}
-      <div style={{display:"grid",gridTemplateColumns:"1.1fr 0.9fr",gap:72,marginBottom:64,alignItems:"start"}} className="g2">
+      {/* Título */}
+      <R delay={.06}>
+        <h2 className="ff big-t" style={{fontSize:"clamp(30px,4.8vw,48px)",color:C.navy,lineHeight:1.2,marginBottom:56,fontWeight:700,maxWidth:900}}>
+          Cada aluno aprende de um jeito,{" "}
+          <span style={{color:C.faint,fontWeight:400}}>mas nos últimos 200 anos a escola foi obrigada a ensinar todos da mesma forma.</span>
+        </h2>
+      </R>
 
-        {/* Esquerda */}
-        <div>
-          <R delay={.06}>
-            <h2 className="ff big-t" style={{fontSize:"clamp(34px,4.8vw,52px)",color:C.navy,lineHeight:1.2,marginBottom:32,fontWeight:700}}>
-              Cada aluno aprende de um jeito.{" "}
-              <span style={{color:C.faint,fontWeight:400}}>Mas a escola ainda precisa ensinar todos da mesma forma.</span>
-            </h2>
-          </R>
+      {/* 4 cards — grid 2x2 */}
+      <R delay={.12}>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20,marginBottom:56}} className="g2">
+          {[
+            "Os alunos acumulam lacunas silenciosas — aprendem em ritmos e formas diferentes, mas ninguém percebe quando algo ficou para trás",
+            "O professor só descobre o problema na hora da prova — sem como acompanhar a progressão individual de cada aluno ao longo do caminho",
+            "A escola é responsabilizada pelo resultado, mas perdeu o controle do processo — a IA já está na mão do aluno, sem filtro pedagógico",
+            "Os pais ficam no escuro até chegar a nota — sem visibilidade do progresso real do filho, a confiança na escola se desgasta",
+          ].map((t,i)=>(
+            <div key={i} style={{padding:"28px 28px",background:C.white,borderRadius:20,border:"1px solid #0001",display:"flex",gap:16,alignItems:"flex-start",boxShadow:"0 2px 12px rgba(5,8,32,0.04)",transition:"all .4s ease"}}
+              onMouseEnter={e=>{e.currentTarget.style.boxShadow=`0 8px 28px ${C.mag}12`;e.currentTarget.style.transform="translateY(-2px)"}}
+              onMouseLeave={e=>{e.currentTarget.style.boxShadow="0 2px 12px rgba(5,8,32,0.04)";e.currentTarget.style.transform="none"}}>
+              <div style={{width:10,height:10,borderRadius:"50%",background:C.mag,flexShrink:0,marginTop:7}} />
+              <span style={{fontSize:15,color:C.navy,lineHeight:1.65,fontWeight:500}}>{t}</span>
+            </div>
+          ))}
         </div>
+      </R>
 
-        {/* Direita — Lista de desafios */}
-        <R delay={.14}>
-          <div style={{display:"grid",gap:14,paddingTop:8}}>
-            {[
-              "Alunos aprendem em ritmos e formas diferentes",
-              "Professores não conseguem acompanhar cada aluno individualmente",
-              "Excesso de tecnologia sem intenção pedagógica",
-              "Dificuldade de desenvolver hábitos consistentes de estudo",
-            ].map((t,i)=>(
-              <div key={i} style={{padding:"22px 28px",background:C.white,borderRadius:16,border:`1.5px solid ${C.mag}15`,display:"flex",gap:16,alignItems:"center",transition:"all .4s cubic-bezier(.22,1,.36,1)",boxShadow:"0 2px 12px rgba(5,8,32,0.04)"}}
-                onMouseEnter={e=>{e.currentTarget.style.borderColor=C.mag+"55";e.currentTarget.style.transform="translateX(6px)";e.currentTarget.style.boxShadow=`0 8px 28px ${C.mag}12`}}
-                onMouseLeave={e=>{e.currentTarget.style.borderColor=C.mag+"15";e.currentTarget.style.transform="none";e.currentTarget.style.boxShadow="0 2px 12px rgba(5,8,32,0.04)"}}>
-                <div style={{width:10,height:10,borderRadius:"50%",background:`linear-gradient(135deg,${C.mag},${C.acc})`,flexShrink:0,boxShadow:`0 0 8px ${C.mag}44`}} />
-                <span style={{fontSize:16,color:C.navy,lineHeight:1.5,fontWeight:600}}>{t}</span>
-              </div>
-            ))}
-          </div>
-        </R>
-      </div>
-
-      {/* Frase forte */}
+      {/* Stat footnote */}
       <R delay={.2}>
-        <div style={{textAlign:"center",paddingTop:8}}>
-          <p className="ff" style={{fontSize:"clamp(22px,2.8vw,30px)",color:C.navy,fontWeight:700,lineHeight:1.35}}>
-            A educação precisa ser personalizada —{" "}
-            <span style={{color:C.mag}}>sem perder a pedagogia no centro.</span>
+        <div style={{borderTop:`1px solid #0001`,paddingTop:32}}>
+          <p style={{fontSize:16,color:C.navy,lineHeight:1.6,maxWidth:860}}>
+            <span style={{color:C.mag,fontWeight:700}}>84%</span> dos alunos já usam IA para estudar, mas apenas{" "}
+            <span style={{color:C.mag,fontWeight:700}}>32%</span> receberam alguma orientação da escola — sem supervisão estruturada por pais ou pela instituição.
           </p>
+          <p style={{fontSize:13,color:C.muted,marginTop:8}}>Fundação Itaú, 2025</p>
         </div>
       </R>
     </div>
@@ -552,15 +554,131 @@ const Solucao = () => (
 );
 
 /* ══════════════════════════════════════════════════
+   PLATAFORMA — Tabs: Revisão Diária / Prova / Alta Performance
+   ══════════════════════════════════════════════════ */
+const plataformaTabs = [
+  {
+    n:"01",title:"Revisão Diária",sub:"Para quem quer consistência",
+    color:C.mag,
+    desc:"Aula dada é aula estudada. A plataforma acompanha a agenda escolar e propõe revisões rápidas e inteligentes dos conteúdos mais recentes — consolidando o aprendizado enquanto ele ainda está fresco.",
+    checks:["Revisões automáticas após cada aula","Conteúdo organizado pela agenda escolar","Hábito de estudo construído dia a dia","Feedback imediato a cada atividade"]
+  },
+  {
+    n:"02",title:"Revisão para a Prova",sub:"Para quem precisa de foco",
+    color:"#c4724a",
+    desc:"Para quem tem prova chegando. O algoritmo agrupa os conteúdos por avaliação, prioriza o calendário e garante que o aluno revise o que realmente importa — reduzindo ansiedade e chegando preparado.",
+    checks:["Conteúdos agrupados por avaliação","Prioridade automática pelo calendário","Foco no que cai na prova","Reduz ansiedade pré-prova"]
+  },
+  {
+    n:"03",title:"Alta Performance",sub:"Para quem quer ir além",
+    color:"#2b8a6e",
+    desc:"Para alunos que miram o ENEM e os grandes vestibulares. O Exitus organiza automaticamente os conteúdos que maximizam a retenção de longo prazo — uma trilha inteligente e adaptativa para quem quer disputar as melhores vagas.",
+    checks:["Preparação estruturada para ENEM e vestibulares","Trilha adaptativa de longo prazo","Maximiza retenção com base em neurociência","Evolução contínua e mensurável"]
+  },
+];
+
+const Plataforma = () => {
+  const [tab, setTab] = useState(0);
+  const t = plataformaTabs[tab];
+  return (
+    <section id="plataforma" className="sp" style={{background:C.navy,padding:"120px 48px",position:"relative",overflow:"hidden"}}>
+      <div style={{maxWidth:1000,margin:"0 auto"}}>
+        {/* Header */}
+        <R><p style={{fontSize:13,fontWeight:700,letterSpacing:3,textTransform:"uppercase",color:C.mag,marginBottom:16,display:"flex",alignItems:"center",gap:12}}>
+          <span style={{width:28,height:2,background:C.mag,display:"inline-block"}} />A Plataforma
+        </p></R>
+        <R delay={.06}><h2 className="ff" style={{fontSize:"clamp(28px,4vw,44px)",color:C.white,lineHeight:1.2,fontWeight:700,marginBottom:12}}>
+          Uma jornada para cada momento do aluno.
+        </h2></R>
+        <R delay={.1}><p style={{fontSize:16,color:"#fff7",lineHeight:1.7,marginBottom:48,maxWidth:620}}>
+          O Exitus identifica onde o aluno está e adapta a experiência automaticamente.
+        </p></R>
+
+        {/* Tab buttons */}
+        <R delay={.14}>
+          <div style={{display:"flex",gap:10,marginBottom:40,flexWrap:"wrap"}}>
+            {plataformaTabs.map((p,i)=>(
+              <div key={i} onClick={()=>setTab(i)} style={{
+                padding:"12px 24px",borderRadius:60,cursor:"pointer",fontSize:14,fontWeight:700,
+                transition:"all .3s ease",display:"flex",alignItems:"center",gap:8,
+                background:tab===i?p.color:"transparent",
+                border:`2px solid ${tab===i?p.color:"#fff2"}`,
+                color:tab===i?"#fff":"#fff8",
+              }}
+                onMouseEnter={e=>{if(tab!==i){e.currentTarget.style.borderColor="#fff5"}}}
+                onMouseLeave={e=>{if(tab!==i){e.currentTarget.style.borderColor="#fff2"}}}
+              >
+                <span style={{fontSize:12,opacity:.7}}>{p.n}</span> {p.title}
+              </div>
+            ))}
+          </div>
+        </R>
+
+        {/* Tab content card */}
+        <R delay={.18}>
+          <div style={{
+            background:C.white,borderRadius:24,padding:0,overflow:"hidden",
+            boxShadow:"0 20px 60px rgba(0,0,0,0.3)",
+            borderLeft:`5px solid ${t.color}`,
+            transition:"border-color .3s ease"
+          }}>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:0}} className="g2">
+
+              {/* Left — text */}
+              <div style={{padding:"44px 40px"}}>
+                <div style={{display:"flex",alignItems:"center",gap:14,marginBottom:20}}>
+                  <div style={{width:44,height:44,borderRadius:"50%",background:t.color+"15",display:"flex",alignItems:"center",justifyContent:"center"}}>
+                    <span className="ff" style={{fontSize:16,fontWeight:800,color:t.color}}>{t.n}</span>
+                  </div>
+                  <div>
+                    <h3 className="ff" style={{fontSize:22,fontWeight:700,color:C.navy,lineHeight:1.2}}>{t.title}</h3>
+                    <p style={{fontSize:13,color:t.color,fontWeight:600,marginTop:2}}>{t.sub}</p>
+                  </div>
+                </div>
+                <p style={{fontSize:15,color:C.muted,lineHeight:1.75,marginBottom:24}}>{t.desc}</p>
+                <div style={{width:36,height:3,borderRadius:2,background:t.color}} />
+              </div>
+
+              {/* Right — checklist */}
+              <div style={{padding:"44px 40px",background:t.color+"08",display:"flex",flexDirection:"column",justifyContent:"center",gap:20}}>
+                {t.checks.map((c,i)=>(
+                  <div key={i} style={{display:"flex",alignItems:"flex-start",gap:14}}>
+                    <div style={{width:24,height:24,borderRadius:"50%",background:t.color,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:1}}>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                    </div>
+                    <span style={{fontSize:15,color:C.navy,lineHeight:1.5,fontWeight:500}}>{c}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </R>
+
+        {/* Dots */}
+        <div style={{display:"flex",justifyContent:"center",gap:8,marginTop:28}}>
+          {plataformaTabs.map((_,i)=>(
+            <div key={i} onClick={()=>setTab(i)} style={{
+              width:tab===i?24:8,height:8,borderRadius:4,cursor:"pointer",
+              background:tab===i?plataformaTabs[tab].color:"#fff2",
+              transition:"all .3s ease"
+            }} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* ══════════════════════════════════════════════════
    3. COMO FUNCIONA — Alternating 2-column zigzag
    ══════════════════════════════════════════════════ */
 const ComoFunciona = () => {
   const steps = [
-    {n:"01",t:"A escola compartilha seu plano pedagógico",d:"Currículo, materiais e metodologia. O Exitus começa a partir do que a escola já construiu.",img:IMGS.diagram},
-    {n:"02",t:"A IA enriquece com neurociência",d:"Algoritmos de recomendação — como Netflix e Amazon, mas para educação — criam uma agenda otimizada para cada aluno.",img:IMGS.roteiro},
-    {n:"03",t:"O aluno estuda com roteiro personalizado",d:"Flashcards, questões adaptativas, revisões espaçadas. Cada atividade na hora e no formato certo para o nível cognitivo.",img:IMGS.revisao},
-    {n:"04",t:"Os Tutores virtuais te acompanham 24/7",d:"Mediação socrática na dúvida. Feedback evolutivo após cada resolução. O erro vira oportunidade de aprendizado.",img:IMGS.tioBento},
-    {n:"05",t:"O professor recebe dados de cada aluno",d:"Progresso, dificuldades, evolução ao longo do tempo. A escola mantém o controle pedagógico — sempre.",img:IMGS.questoes},
+    {n:"01",t:"A escola define",d:"Currículo, materiais e metodologia. O Exitus começa a partir do plano pedagógico que a escola já construiu.",img:IMGS.diagram},
+    {n:"02",t:"O Exitus prepara",d:"Criamos conteúdos, aulas e atividades com base no plano da escola, seguindo rigorosos critérios de segurança e intencionalidade pedagógica.",img:IMGS.roteiro},
+    {n:"03",t:"O professor enriquece",d:"O professor pode compartilhar materiais próprios, validar questões e enriquecer o conteúdo gerado pela plataforma — e ainda gerar provas e revisões automaticamente, já diagramadas. Sem obrigação, com total autonomia.",img:IMGS.revisao},
+    {n:"04",t:"O aluno aprende",d:"Cada aluno recebe um roteiro de estudos diário, personalizado e adaptativo. Os tutores virtuais acompanham todo o processo, respondendo dúvidas e ajustando o ritmo em tempo real.",img:IMGS.tioBento},
+    {n:"05",t:"A escola evolui",d:"A equipe pedagógica recebe insights por aluno e por assunto em tempo real. O plano do ano seguinte é reprocessado com base nas interações do ano — fechando um ciclo virtuoso e contínuo.",img:IMGS.questoes},
   ];
   return (
     <section id="como-funciona" className="grain sp" style={{background:C.light,padding:"140px 48px",position:"relative",overflow:"hidden"}}>
@@ -626,15 +744,15 @@ const Neurociencia = () => {
             <R><div className="tag">Base Científica</div></R>
             <R delay={.06}>
               <h2 className="ff big-t" style={{fontSize:"clamp(34px,4.8vw,48px)",color:C.navy,lineHeight:1.2,marginBottom:28,fontWeight:700}}>
-                Cada funcionalidade é fundamentada em{" "}
-                <span className="gt" style={{}}>pesquisas publicadas.</span>
+                Cada funcionalidade é fundamentada em conceitos pedagógicos e{" "}
+                <span className="gt">princípios de neurociência estabelecidos.</span>
               </h2>
             </R>
             <R delay={.1}><p style={{fontSize:17,color:C.muted,lineHeight:1.9}}>
-              Não usamos IA por modismo. O Exitus aplica princípios consolidados de neurociência educacional: revisão espaçada, efeito teste, Taxonomia de Bloom e técnicas de formação de hábito.
+              Tecnologia é ferramenta. IA precisa ser vista como um risco tolerável — o verdadeiro valor está na nossa engenharia de prompt, enriquecida por Pedagogos, Médicos e uma equipe comprometida com educação de valor formativo. Intencionalidade pedagógica e ciência guiam tudo que fazemos.
             </p></R>
           </div>
-          <R delay={.15}><img src={IMGS.bloom} alt="Taxonomia de Bloom" className="img-f" /></R>
+          <R delay={.15}><img src={IMGS.bloom} alt="Fundamentação Científica" className="img-f" /></R>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}} className="g2">
           {cards.map((c,i)=>(
@@ -654,6 +772,47 @@ const Neurociencia = () => {
 };
 
 /* ══════════════════════════════════════════════════
+   NOVA SEÇÃO — IA com Intenção Pedagógica
+   ══════════════════════════════════════════════════ */
+const Abordagem = () => (
+  <section id="abordagem" className="sp grain" style={{background:`linear-gradient(160deg,${C.navy},${C.deep})`,padding:"140px 48px",position:"relative",overflow:"hidden"}}>
+    <div className="orb" style={{width:400,height:400,background:C.mag,top:"-10%",right:"-5%",opacity:.04}} />
+    <div style={{maxWidth:1240,margin:"0 auto",position:"relative",zIndex:1}}>
+      <div style={{textAlign:"center",marginBottom:72}}>
+        <R><div className="tag tag-d">Nossa Abordagem</div></R>
+        <R delay={.06}>
+          <h2 className="ff big-t" style={{fontSize:"clamp(34px,4.8vw,52px)",color:C.white,lineHeight:1.25,marginBottom:24,fontWeight:700}}>
+            IA com <span style={{color:C.mag}}>intenção pedagógica.</span>
+          </h2>
+        </R>
+        <R delay={.1}>
+          <p style={{fontSize:18,color:"#fffd",lineHeight:1.85,maxWidth:760,margin:"0 auto"}}>
+            Tecnologia é ferramenta. IA precisa ser vista como um risco tolerável — o verdadeiro valor está na nossa engenharia de prompt, construída com Pedagogos, Médicos e uma equipe comprometida com educação de valor formativo.
+          </p>
+        </R>
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:24,flexWrap:"wrap"}} className="g2" data-cols="3">
+        {[
+          {icon:"🎓",t:"Pedagogos no core",d:"Cada prompt, cada feedback, cada percurso foi desenhado com olhar pedagógico. Não deixamos a IA decidir sozinha — humanos supervisionam cada ciclo."},
+          {icon:"🔬",t:"Base científica",d:"Neurociência educacional aplicada: revisão espaçada, efeito teste, dificuldade desejável. Não inventamos — aplicamos o que a pesquisa comprova."},
+          {icon:"🛡️",t:"IA como risco tolerável",d:"Conhecemos os limites e os riscos da IA generativa. Por isso construímos guardrails, fluxos multi-agente e revisão humana em cada camada."},
+        ].map((item,i)=>(
+          <R key={i} delay={.06*i}>
+            <div style={{background:"#ffffff0a",backdropFilter:"blur(16px)",border:`1px solid ${C.mag}20`,borderRadius:24,padding:"40px 32px",transition:"all .4s ease"}}
+              onMouseEnter={e=>{e.currentTarget.style.background="#ffffff12";e.currentTarget.style.borderColor=C.mag+"44";e.currentTarget.style.transform="translateY(-4px)"}}
+              onMouseLeave={e=>{e.currentTarget.style.background="#ffffff0a";e.currentTarget.style.borderColor=C.mag+"20";e.currentTarget.style.transform="none"}}>
+              <div style={{fontSize:40,marginBottom:20}}>{item.icon}</div>
+              <h4 className="ff" style={{fontSize:20,fontWeight:700,color:C.white,marginBottom:12}}>{item.t}</h4>
+              <p style={{fontSize:15,color:"#fff8",lineHeight:1.75}}>{item.d}</p>
+            </div>
+          </R>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+/* ══════════════════════════════════════════════════
    5. SEGURANÇA — Enxuto
    ══════════════════════════════════════════════════ */
 const Seguranca = () => (
@@ -667,17 +826,20 @@ const Seguranca = () => (
           </h2></R>
           <R delay={.1}>
             <p style={{fontSize:17,color:C.muted,lineHeight:1.9,marginBottom:20}}>
-              Acreditamos em <strong style={{color:C.navy}}>tecnologia calma</strong>. Cada interação tem intencionalidade pedagógica. Os agentes de IA são treinados para letramento digital responsável.
+              Usamos o que há de mais moderno para garantir interações seguras: <strong style={{color:C.navy}}>fluxos multi-agente com gatekeepers e guardrails</strong> em cada camada. Em nenhuma interação com os tutores virtuais o aluno poderá abordar temas que fujam ao conteúdo pedagógico.
+            </p>
+            <p style={{fontSize:17,color:C.muted,lineHeight:1.9}}>
+              Também acreditamos no <strong style={{color:C.navy}}>letramento em IA</strong> como competência do futuro, e no letramento digital como requisito legal do presente.
             </p>
           </R>
         </div>
         <R delay={.12}>
           <div className="seg-inner" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
             {[
-              {t:"Ambiente controlado",d:"Sem conteúdo inadequado",c:C.mag},
-              {t:"IA treinada",d:"Pedagógica, não genérica",c:C.acc},
-              {t:"A partir de 10 anos",d:"Adequada ao desenvolvimento",c:C.gold},
-              {t:"Letramento digital",d:"Uso responsável de telas",c:"#2b8a6e"},
+              {t:"Fluxo multi-agente",d:"Gatekeepers e guardrails validam cada resposta antes de chegar ao aluno.",c:C.mag},
+              {t:"Somente temas pedagógicos",d:"Os tutores não desviam para conteúdo fora da sala de aula — nunca.",c:C.acc},
+              {t:"Letramento em IA",d:"Competência do futuro — ensinamos o uso crítico e responsável da IA.",c:C.gold},
+              {t:"Letramento digital",d:"Requisito legal atual — conformidade com as tendências regulatórias.",c:"#2b8a6e"},
             ].map((item,i)=>(
               <div key={i} style={{padding:24,borderRadius:18,background:C.white,border:"1px solid #0001",transition:"all .35s ease",textAlign:"center"}}
                 onMouseEnter={e=>{e.currentTarget.style.borderColor=item.c+"44"}}
@@ -695,260 +857,55 @@ const Seguranca = () => (
 );
 
 /* ══════════════════════════════════════════════════
-   GALERIA — Interactive feature showcase
-   ══════════════════════════════════════════════════ */
-const Gallery = () => {
-  const [active, setActive] = useState(0);
-  const touchRef = useRef(null);
-  const tabsRef = useRef(null);
-  const screens = [
-    { img: IMGS.g_dashboard_full, title: "Dashboard Principal", desc: "Visão geral do progresso, próximas missões e avaliações" },
-    { img: IMGS.g_roteiro, title: "Roteiro de Estudos", desc: "Assuntos sugeridos para o dia, personalizados por aluno" },
-    { img: IMGS.g_revisao_conteudo, title: "Revisão de Conteúdos", desc: "Revisão interativa com IA baseada no material da aula" },
-    { img: IMGS.g_questoes, title: "Resolver Questões", desc: "Questões adaptativas com tutor virtual integrado" },
-    { img: IMGS.g_quiz, title: "Quiz Interativo", desc: "Modo dinâmico com questões geradas por IA" },
-    { img: IMGS.g_tia_chris, title: "Tia Chris", desc: "Tutora virtual para tirar dúvidas e auxiliar nos estudos" },
-    { img: IMGS.g_provas, title: "Revisão para Provas", desc: "Preparação direcionada com prioridade automática" },
-    { img: IMGS.g_materiais, title: "Materiais", desc: "Conteúdos compartilhados pelos professores" },
-    { img: IMGS.g_revisao_aula, title: "Revisão de Aula", desc: "Explicação detalhada dos conteúdos com contexto da aula" },
-    { img: IMGS.g_tio_bento, title: "Tio Bento", desc: "Tutor que guia o raciocínio na resolução de questões" },
-  ];
-
-  /* Touch swipe for mobile */
-  useEffect(() => {
-    const el = touchRef.current;
-    if (!el) return;
-    let startX = 0;
-    let startY = 0;
-    const onStart = (e) => { startX = e.touches[0].clientX; startY = e.touches[0].clientY; };
-    const onEnd = (e) => {
-      const dx = e.changedTouches[0].clientX - startX;
-      const dy = e.changedTouches[0].clientY - startY;
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-        if (dx < 0) setActive(p => Math.min(p + 1, screens.length - 1));
-        else setActive(p => Math.max(p - 1, 0));
-      }
-    };
-    el.addEventListener("touchstart", onStart, { passive: true });
-    el.addEventListener("touchend", onEnd, { passive: true });
-    return () => { el.removeEventListener("touchstart", onStart); el.removeEventListener("touchend", onEnd); };
-  }, [screens.length]);
-
-  /* Auto-scroll active tab into view on mobile */
-  useEffect(() => {
-    const container = tabsRef.current;
-    if (!container) return;
-    const activeTab = container.children[active];
-    if (!activeTab) return;
-    const scrollLeft = activeTab.offsetLeft - container.offsetWidth / 2 + activeTab.offsetWidth / 2;
-    container.scrollTo({ left: Math.max(0, scrollLeft), behavior: "smooth" });
-  }, [active]);
-
-  return (
-    <section id="galeria" className="sp gal-section" style={{background:C.navy,padding:"120px 48px",position:"relative",overflow:"hidden"}}>
-      <div className="orb" style={{width:400,height:400,background:C.mag,top:"-10%",right:"-5%",opacity:.04}} />
-      <div className="sec-center" style={{maxWidth:1320,margin:"0 auto",position:"relative",zIndex:1}}>
-        <R>
-          <div className="tag tag-d">A Plataforma</div>
-          <h2 className="ff big-t" style={{fontSize:"clamp(34px,4.8vw,48px)",color:C.white,lineHeight:1.25,marginBottom:56,fontWeight:700}}>
-            Conheça cada funcionalidade <span style={{color:C.mag}}>por dentro.</span>
-          </h2>
-        </R>
-
-        <div style={{display:"grid",gridTemplateColumns:"280px 1fr",gap:32,alignItems:"start"}} className="g2 gal-grid">
-          {/* Left: selectors */}
-          <R delay={.1} className="gal-tabs-wrap">
-            <div className="gal-tabs" ref={tabsRef}>
-              {screens.map((s,i)=>(
-                <div key={i} className="gal-tab" onClick={()=>setActive(i)} style={{
-                  padding:"14px 20px",borderRadius:14,cursor:"pointer",
-                  transition:"all .35s cubic-bezier(.22,1,.36,1)",
-                  background: active===i ? `linear-gradient(135deg,${C.mag}22,${C.acc}15)` : "transparent",
-                  border: active===i ? `1px solid ${C.mag}44` : "1px solid transparent",
-                  transform: active===i ? "translateX(6px)" : "none",
-                }}>
-                  <div style={{display:"flex",alignItems:"center",gap:12}}>
-                    <div className="gal-dot" style={{
-                      width:8,height:8,borderRadius:"50%",flexShrink:0,transition:"all .3s",
-                      background: active===i ? C.mag : "#fff2",
-                      boxShadow: active===i ? `0 0 10px ${C.mag}66` : "none"
-                    }} />
-                    <span style={{
-                      fontSize:14,fontWeight: active===i ? 700 : 500,
-                      color: active===i ? "#fff" : "#fff6",
-                      transition:"all .3s"
-                    }}>{s.title}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </R>
-
-          {/* Right: active screenshot */}
-          <R delay={.15}>
-            <div ref={touchRef} style={{position:"relative",touchAction:"pan-y"}}>
-              <div style={{background:"#181c3a",borderRadius:20,padding:8,boxShadow:`0 32px 80px rgba(5,8,32,0.5), 0 0 0 1px ${C.mag}15`,transition:"box-shadow .4s ease"}}>
-                <div style={{position:"relative",borderRadius:14,overflow:"hidden",background:"#f0f1f5"}}>
-                  {screens.map((s,i)=>(
-                    <img key={i} src={s.img} alt={s.title} style={{
-                      width:"100%",display:"block",borderRadius:14,
-                      position: i===0 ? "relative" : "absolute",
-                      top:0,left:0,
-                      opacity: active===i ? 1 : 0,
-                      transition:"opacity .5s ease",
-                    }} />
-                  ))}
-                </div>
-              </div>
-              {/* Caption + mobile nav */}
-              <div style={{marginTop:20,paddingLeft:8}}>
-                <h4 className="ff" style={{fontSize:20,color:C.white,fontWeight:700,marginBottom:6}}>{screens[active].title}</h4>
-                <p style={{fontSize:15,color:"#fff7",marginBottom:16}}>{screens[active].desc}</p>
-                {/* Dot indicators + arrows — visible only on mobile */}
-                <div className="gal-nav" style={{display:"none",alignItems:"center",justifyContent:"center",gap:16,marginTop:4}}>
-                  <button onClick={()=>setActive(p=>Math.max(p-1,0))} style={{background:"none",border:"none",color:active===0?"#fff2":"#fffa",fontSize:20,cursor:"pointer",padding:"4px 8px",transition:"color .2s"}} aria-label="Anterior">‹</button>
-                  <div style={{display:"flex",gap:6,alignItems:"center"}}>
-                    {screens.map((_,i)=>(
-                      <div key={i} onClick={()=>setActive(i)} style={{width:active===i?20:6,height:6,borderRadius:3,background:active===i?C.mag:"#fff3",transition:"all .3s",cursor:"pointer"}} />
-                    ))}
-                  </div>
-                  <button onClick={()=>setActive(p=>Math.min(p+1,screens.length-1))} style={{background:"none",border:"none",color:active===screens.length-1?"#fff2":"#fffa",fontSize:20,cursor:"pointer",padding:"4px 8px",transition:"color .2s"}} aria-label="Próximo">›</button>
-                </div>
-                <div className="gal-swipe-hint" style={{display:"none",justifyContent:"center",marginTop:8}}>
-                  <span style={{fontSize:11,color:"#fff3",letterSpacing:".04em"}}>← deslize para navegar →</span>
-                </div>
-              </div>
-            </div>
-          </R>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-/* ══════════════════════════════════════════════════
    6. PROVA SOCIAL — Christus com dados concretos
    ══════════════════════════════════════════════════ */
 const ProvaSocial = () => (
-    <section id="prova-social" className="grain sp" style={{background:`linear-gradient(160deg,${C.navy},${C.deep})`,padding:"140px 48px",position:"relative",overflow:"hidden"}}>
+  <section id="prova-social" className="grain sp" style={{background:`linear-gradient(160deg,${C.navy},${C.deep})`,padding:"140px 48px",position:"relative",overflow:"hidden"}}>
     <div className="orb" style={{width:500,height:500,background:C.mag,bottom:"-15%",left:"-10%",opacity:.04}} />
-    <div className="sec-center" style={{maxWidth:1240,margin:"0 auto",position:"relative",zIndex:2}}>
-      <R><div className="tag tag-d">Resultados</div></R>
-      <R delay={.06}><h2 className="ff big-t" style={{fontSize:"clamp(34px,4.8vw,52px)",color:C.white,marginBottom:64,fontWeight:700}}>
+    <div style={{maxWidth:900,margin:"0 auto",position:"relative",zIndex:2,textAlign:"center"}}>
+
+      {/* Logo Christus destaque */}
+      <R><img src={IMGS.christusWhite} alt="Colégio Christus" style={{height:120,objectFit:"contain",marginBottom:40,display:"block",margin:"0 auto 40px"}} /></R>
+
+      {/* Tag + Título */}
+      <R delay={.06}><div className="tag tag-d" style={{margin:"0 auto 16px"}}>Resultados</div></R>
+      <R delay={.1}><h2 className="ff big-t" style={{fontSize:"clamp(34px,4.8vw,52px)",color:C.white,marginBottom:16,fontWeight:700}}>
         Desenvolvido com quem entende de educação.
       </h2></R>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:56,alignItems:"center"}} className="g2">
-        <R delay={.1}><img src={IMGS.christus} alt="Christus" className="img-f" /></R>
-        <R delay={.18}>
-          <div className="glass glass-panel" style={{padding:48}}>
-            <h3 className="ff" style={{fontSize:26,fontWeight:700,color:C.white,marginBottom:12}}>Colégio Christus</h3>
-            <p style={{fontSize:14,color:"#fff5",marginBottom:32,lineHeight:1.6}}>75 anos de história educacional em Fortaleza. Uma das instituições mais tradicionais e inovadoras do Brasil.</p>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:24,marginBottom:32}}>
-              {[{n:"1º",l:"lugar ENEM 2024*"},{n:"2º",l:"geral do Brasil"},{n:"79%",l:"estudam há +10 anos"},{n:"1ª",l:"do CE com tutoria IA"}].map((s,i)=>(
-                <div key={i} style={{textAlign:"center"}}>
-                  <div className="ff" style={{fontSize:40,color:C.mag,fontWeight:800,lineHeight:1}}>{s.n}</div>
-                  <div style={{fontSize:12,color:"#fff5",marginTop:8}}>{s.l}</div>
-                </div>
-              ))}
+      <R delay={.13}><p style={{fontSize:15,color:"rgba(255,255,255,0.4)",marginBottom:64}}>75 anos de história educacional em Fortaleza.</p></R>
+
+      {/* 4 Stats em linha */}
+      <R delay={.16}>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:32,marginBottom:56}} className="g2">
+          {[
+            {n:"1º",l:"lugar ENEM 2024*"},
+            {n:"2º",l:"geral do Brasil"},
+            {n:"79%",l:"estudam há +10 anos"},
+            {n:"1ª",l:"do CE com tutoria IA"},
+          ].map((s,i)=>(
+            <div key={i} style={{textAlign:"center"}}>
+              <div className="ff" style={{fontSize:"clamp(40px,5vw,56px)",color:C.white,fontWeight:800,lineHeight:1}}>{s.n}</div>
+              <div style={{fontSize:13,color:"rgba(255,255,255,0.45)",marginTop:10,lineHeight:1.5}}>{s.l}</div>
             </div>
-            <div style={{borderTop:"1px solid #fff0c",paddingTop:20}}>
-              <p style={{fontSize:14,color:"#fff8",lineHeight:1.6}}>Melhor universidade do Brasil segundo o MEC (UniChristus). Uma das primeiras escolas trilíngues do país.</p>
-            </div>
-            <p style={{fontSize:10,color:"#fff2",marginTop:16}}>*Escolas 40+ alunos. MEC 08/07/2025. INEP: 23246880.</p>
-          </div>
-        </R>
-      </div>
+          ))}
+        </div>
+      </R>
+
+      {/* Linha separadora + credenciais */}
+      <R delay={.22}>
+        <div style={{borderTop:"1px solid rgba(255,255,255,0.08)",paddingTop:28,maxWidth:700,margin:"0 auto"}}>
+          <p style={{fontSize:15,color:"rgba(255,255,255,0.5)",lineHeight:1.7}}>
+            Melhor universidade do Brasil segundo o MEC (UniChristus).<br/>Uma das primeiras escolas trilíngues do país.
+          </p>
+          <p style={{fontSize:11,color:"rgba(255,255,255,0.15)",marginTop:14}}>*Escolas 40+ alunos. MEC 08/07/2025. INEP: 23246880.</p>
+        </div>
+      </R>
+
     </div>
   </section>
 );
 
-/* ══════════════════════════════════════════════════
-   7. DEMO — Screenshots reais
-   ══════════════════════════════════════════════════ */
-const demoVideos = [
-  {vid:"/assets/videos/plataforma geral.mp4",l:"Plataforma Geral",icon:"🖥️"},
-  {vid:"/assets/videos/revisando a aula do dia.mp4",l:"Revisando a Aula do Dia",icon:"📖"},
-  {vid:"/assets/videos/quizz por assunto.mp4",l:"Quiz por Assunto",icon:"🧩"},
-  {vid:"/assets/videos/flahscards.mp4",l:"Flashcards",icon:"🃏"}
-];
 
-const Demo = () => {
-  const [modal, setModal] = useState(null);
-
-  useEffect(() => {
-    if (modal !== null) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
-  }, [modal]);
-
-  return (
-  <section id="demo" className="sp" style={{padding:"140px 48px",background:C.light,overflowX:"hidden"}}>
-    <div style={{maxWidth:1180,margin:"0 auto",overflow:"hidden"}}>
-      <R><div className="sec-center" style={{textAlign:"center",marginBottom:64}}>
-        <div className="tag">Plataforma</div>
-        <h2 className="ff big-t" style={{fontSize:"clamp(34px,4.8vw,48px)",color:C.navy,marginTop:16,fontWeight:700}}>
-          Veja o Exitus <span className="gt" style={{}}>em ação.</span>
-        </h2>
-      </div></R>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:28,marginBottom:64}} className="g2">
-        {demoVideos.map((s,i)=>(
-          <R key={i} delay={.08*i}>
-            <div style={{position:"relative",borderRadius:24,overflow:"hidden",cursor:"pointer",transition:"all .5s ease"}}
-              onClick={()=>setModal(i)}
-              onMouseEnter={e=>e.currentTarget.style.transform="scale(1.02)"}
-              onMouseLeave={e=>e.currentTarget.style.transform="none"}>
-              <video src={s.vid} muted preload="metadata" playsInline
-                style={{width:"100%",display:"block",borderRadius:24,pointerEvents:"none"}} />
-              <div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center"}}>
-                <div style={{width:68,height:68,borderRadius:"50%",background:"rgba(255,255,255,0.92)",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 8px 32px rgba(0,0,0,0.18)",backdropFilter:"blur(8px)",transition:"transform .3s ease"}}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill={C.navy}><polygon points="6,3 20,12 6,21"/></svg>
-                </div>
-              </div>
-              <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"28px 28px 24px",background:`linear-gradient(transparent,${C.navy}dd)`,pointerEvents:"none"}}>
-                <span style={{fontSize:15,color:C.white,fontWeight:600}}>{s.icon} {s.l}</span>
-              </div>
-            </div>
-          </R>
-        ))}
-      </div>
-    </div>
-
-    {/* ── Modal de vídeo ── */}
-    {modal !== null && (
-      <div onClick={()=>setModal(null)} style={{
-        position:"fixed",inset:0,zIndex:9999,display:"flex",alignItems:"center",justifyContent:"center",
-        background:"rgba(0,0,0,0.82)",backdropFilter:"blur(12px)",
-        animation:"fadeIn .25s ease"
-      }}>
-        <style>{`@keyframes fadeIn{from{opacity:0}to{opacity:1}} @keyframes scaleIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}`}</style>
-        <div onClick={e=>e.stopPropagation()} className="demo-modal-inner" style={{
-          position:"relative",width:"90vw",maxWidth:960,
-          background:C.navy,borderRadius:24,overflow:"hidden",
-          boxShadow:"0 32px 80px rgba(0,0,0,0.5)",
-          animation:"scaleIn .3s cubic-bezier(.22,1,.36,1)"
-        }}>
-          {/* Header */}
-          <div className="demo-modal-header" style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"18px 28px",borderBottom:`1px solid rgba(255,255,255,0.08)`}}>
-            <span style={{fontSize:17,fontWeight:700,color:C.white}}>{demoVideos[modal].icon} {demoVideos[modal].l}</span>
-            <button onClick={()=>setModal(null)} style={{
-              width:40,height:40,borderRadius:12,border:"none",cursor:"pointer",
-              background:"rgba(255,255,255,0.08)",color:C.white,fontSize:22,
-              display:"flex",alignItems:"center",justifyContent:"center",transition:"background .2s"
-            }} onMouseEnter={e=>e.currentTarget.style.background="rgba(255,255,255,0.18)"}
-               onMouseLeave={e=>e.currentTarget.style.background="rgba(255,255,255,0.08)"}>✕</button>
-          </div>
-          {/* Video */}
-          <video src={demoVideos[modal].vid} controls autoPlay
-            style={{width:"100%",display:"block",maxHeight:"75vh",background:"#000"}} />
-        </div>
-      </div>
-    )}
-  </section>
-  );
-};
 
 /* ══════════════════════════════════════════════════
    8. CTA + FORMULÁRIO — Conversão real
@@ -956,11 +913,19 @@ const Demo = () => {
 const Contato = () => {
   const [form, setForm] = useState({ nome:"", escola:"", email:"", telefone:"", perfil:"escola" });
   const [sent, setSent] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  const handleSubmit = () => { if(form.nome && form.email) setSent(true); };
+  const handleSubmit = () => {
+    if(form.nome && form.email) {
+      fetch(`https://formsubmit.co/exitus@px.com.br`, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(form)}).catch(()=>{});
+      setSent(true);
+      setShowModal(true);
+    }
+  };
 
   return (
-    <section id="contato" className="grain sp" style={{background:`linear-gradient(160deg,${C.navy},${C.ink})`,padding:"140px 48px",position:"relative",overflow:"hidden"}}>
+  <>
+    <section id="contato" className="grain sp" style={{background:`linear-gradient(160deg,${C.deep},#0d1138)`,padding:"140px 48px",position:"relative",overflow:"hidden",borderTop:`1px solid ${C.mag}15`}}>
       <div className="orb" style={{width:600,height:600,background:C.mag,top:"50%",left:"50%",transform:"translate(-50%,-50%)",opacity:.03}} />
       <div className="mhide orb" style={{width:300,height:300,background:C.acc,top:"10%",right:"-5%",opacity:.04}} />
       <div style={{maxWidth:1100,margin:"0 auto",position:"relative",zIndex:2}}>
@@ -1004,9 +969,12 @@ const Contato = () => {
             <div className="contact-glass" style={{background:"#fff08",backdropFilter:"blur(24px)",border:"1px solid #fff12",borderRadius:28,padding:"44px 40px"}}>
               {sent ? (
                 <div style={{textAlign:"center",padding:"40px 0"}}>
-                  <div style={{fontSize:48,marginBottom:16}}>✅</div>
-                  <h3 className="ff" style={{fontSize:24,color:C.white,fontWeight:700,marginBottom:8}}>Recebemos seu contato!</h3>
-                  <p style={{fontSize:15,color:"#fffa"}}>Nosso time pedagógico entrará em contato em até 24 horas.</p>
+                  <div style={{width:64,height:64,borderRadius:"50%",background:`linear-gradient(135deg,${C.mag},${C.acc})`,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 20px"}}>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <h3 className="ff" style={{fontSize:24,color:C.white,fontWeight:700,marginBottom:8}}>Mensagem enviada!</h3>
+                  <p style={{fontSize:15,color:"#fffa",marginBottom:20}}>Nosso time pedagógico entrará em contato em até 24 horas.</p>
+                  <div onClick={()=>{setSent(false);setShowModal(false);setForm({nome:"",escola:"",email:"",telefone:"",perfil:"escola"})}} style={{cursor:"pointer",fontSize:14,color:C.mag,fontWeight:600}}>Enviar outro contato →</div>
                 </div>
               ) : (
                 <>
@@ -1015,7 +983,7 @@ const Contato = () => {
 
                   {/* Profile selector */}
                   <div style={{display:"flex",gap:8,marginBottom:24}}>
-                    {[{v:"escola",l:"Sou Escola"},{v:"professor",l:"Sou Professor"},{v:"pai",l:"Sou Pai/Mãe"}].map(p=>(
+                    {[{v:"escola",l:"Sou Escola"},{v:"professor",l:"Sou Professor"}].map(p=>(
                       <div key={p.v} onClick={()=>setForm({...form,perfil:p.v})} style={{
                         flex:1,padding:"10px 12px",borderRadius:12,textAlign:"center",cursor:"pointer",fontSize:13,fontWeight:600,transition:"all .2s",
                         background:form.perfil===p.v?C.mag+"33":"#fff08",
@@ -1029,11 +997,11 @@ const Contato = () => {
                     <input key={f.k} type={f.t} placeholder={f.p} value={form[f.k]}
                       onChange={e=>setForm({...form,[f.k]:e.target.value})}
                       style={{
-                        width:"100%",padding:"14px 18px",borderRadius:14,border:"1.5px solid #fff15",
-                        background:"#fff08",color:"#fff",fontSize:15,fontFamily:"'Poppins'",
-                        marginBottom:12,outline:"none",transition:"border .2s"}}
+                        width:"100%",padding:"14px 18px",borderRadius:14,border:"1.5px solid rgba(255,255,255,0.12)",
+                        background:"rgba(255,255,255,0.06)",color:"#ffffff",fontSize:15,fontFamily:"'Poppins'",
+                        marginBottom:12,outline:"none",transition:"border .2s",caretColor:"#fff"}}
                       onFocus={e=>e.target.style.borderColor=C.mag}
-                      onBlur={e=>e.target.style.borderColor="#fff15"}
+                      onBlur={e=>e.target.style.borderColor="rgba(255,255,255,0.12)"}
                     />
                   ))}
 
@@ -1048,6 +1016,62 @@ const Contato = () => {
         </div>
       </div>
     </section>
+
+    {/* ── Modal de Sucesso ── */}
+    {showModal && (
+      <div onClick={()=>setShowModal(false)} style={{
+        position:"fixed",inset:0,zIndex:9999,display:"flex",alignItems:"center",justifyContent:"center",
+        background:"rgba(5,8,32,0.85)",backdropFilter:"blur(16px)",
+        animation:"fadeIn .3s ease"
+      }}>
+        <style>{`@keyframes fadeIn{from{opacity:0}to{opacity:1}} @keyframes modalPop{from{opacity:0;transform:scale(.85) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}} @keyframes checkPulse{0%{transform:scale(0)}50%{transform:scale(1.15)}100%{transform:scale(1)}} @keyframes confettiDrop{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(120px) rotate(360deg)}}`}</style>
+        <div onClick={e=>e.stopPropagation()} style={{
+          position:"relative",width:"90vw",maxWidth:480,
+          background:`linear-gradient(160deg,${C.navy},${C.deep})`,
+          borderRadius:28,overflow:"hidden",
+          boxShadow:`0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px ${C.mag}22`,
+          animation:"modalPop .4s cubic-bezier(.22,1,.36,1)",
+          textAlign:"center",padding:"56px 40px"
+        }}>
+          {/* Confetti dots */}
+          {[...Array(12)].map((_,i)=>(
+            <div key={i} style={{
+              position:"absolute",top:0,left:`${8+i*7.5}%`,
+              width:8,height:8,borderRadius:"50%",
+              background:[C.mag,C.acc,C.gold,"#2b8a6e",C.magL][i%5],
+              animation:`confettiDrop ${1.2+i*0.15}s ease-out ${i*0.08}s forwards`
+            }} />
+          ))}
+
+          {/* Check icon */}
+          <div style={{
+            width:80,height:80,borderRadius:"50%",
+            background:`linear-gradient(135deg,${C.mag},${C.acc})`,
+            display:"flex",alignItems:"center",justifyContent:"center",
+            margin:"0 auto 28px",
+            boxShadow:`0 12px 40px ${C.mag}44`,
+            animation:"checkPulse .5s cubic-bezier(.22,1,.36,1) .2s both"
+          }}>
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+
+          <h3 className="ff" style={{fontSize:28,color:C.white,fontWeight:700,marginBottom:12}}>
+            Demonstração solicitada!
+          </h3>
+          <p style={{fontSize:16,color:"#fff9",lineHeight:1.7,marginBottom:8}}>
+            Obrigado, <strong style={{color:C.white}}>{form.nome}</strong>.
+          </p>
+          <p style={{fontSize:15,color:"#fff6",lineHeight:1.7,marginBottom:32}}>
+            Nosso time pedagógico entrará em contato em até <strong style={{color:C.mag}}>24 horas</strong> pelo e-mail ou WhatsApp informados.
+          </p>
+
+          <div onClick={()=>setShowModal(false)} className="btn-m" style={{justifyContent:"center",margin:"0 auto",cursor:"pointer"}}>
+            Entendido <span style={{fontSize:16}}>✓</span>
+          </div>
+        </div>
+      </div>
+    )}
+  </>
   );
 };
 
@@ -1056,7 +1080,7 @@ const Ft = () => (
   <footer className="ft-pad" style={{background:C.navy,padding:"36px 48px 28px",borderTop:`2px solid ${C.mag}22`}}>
     <div className="ft-inner" style={{maxWidth:1320,margin:"0 auto",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:16}}>
       <div style={{display:"flex",alignItems:"center",gap:12}}>
-        <img src={IMGS.logo} alt="Exitus" style={{height:28}} />
+        <img src={IMGS.logo} alt="Exitus" style={{height:40}} />
         <span style={{fontSize:12,color:"#fff2"}}>Aprenda aprendendo.</span>
       </div>
       <p style={{fontSize:11,color:"#fff1"}}>© 2026 Exitus Educacional</p>
@@ -1065,5 +1089,5 @@ const Ft = () => (
 );
 
 export default function App() {
-  return (<><style>{css}</style><Nav /><Hero /><Marquee /><Problema /><Solucao /><ComoFunciona /><Neurociencia /><Seguranca /><Gallery /><ProvaSocial /><Demo /><Contato /><Ft /></>);
+  return (<><style>{css}</style><Nav /><Hero /><Marquee /><Problema /><Solucao /><Plataforma /><ComoFunciona /><Neurociencia /><Abordagem /><Seguranca /><ProvaSocial /><Contato /><Ft /></>);
 }
