@@ -119,7 +119,6 @@ const IMGS = {
   g_revisao_aula: "./assets/g_revisao_aula.png",
   dashboard: "./assets/dashboard.png",
   christus: "./assets/christus.jpg",
-  christusWhite: "./assets/Logo-Christus-branco%20(1).png",
   christusColor: "./assets/Logo-Christus-Colorida.png",
 };
 
@@ -865,7 +864,7 @@ const ProvaSocial = () => (
     <div style={{maxWidth:900,margin:"0 auto",position:"relative",zIndex:2,textAlign:"center"}}>
 
       {/* Logo Christus destaque */}
-      <R><img src={IMGS.christusWhite} alt="Colégio Christus" style={{height:120,objectFit:"contain",marginBottom:40,display:"block",margin:"0 auto 40px"}} /></R>
+      <R><div style={{display:"flex",justifyContent:"center",marginBottom:40}}><img src={IMGS.christusColor} alt="Colégio Christus" style={{height:140,objectFit:"contain"}} /></div></R>
 
       {/* Tag + Título */}
       <R delay={.06}><div className="tag tag-d" style={{margin:"0 auto 16px"}}>Resultados</div></R>
