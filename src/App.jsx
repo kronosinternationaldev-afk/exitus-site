@@ -332,7 +332,7 @@ const Nav = () => {
       <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:200,background:s||menuOpen?"rgba(5,8,32,0.97)":"transparent",backdropFilter:s||menuOpen?"blur(28px)":"none",transition:"all .45s ease",padding:s?"8px 0":"20px 0",borderBottom:s?"1px solid #fff08":"none"}}>
         <div className="nav-pad" style={{maxWidth:1400,margin:"0 auto",padding:"0 40px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
           <div style={{cursor:"pointer",flexShrink:0}} onClick={()=>{setMenuOpen(false);window.scrollTo({top:0,behavior:"smooth"})}}>
-            <img src={IMGS.logo} alt="Exitus" className="nav-logo" style={{height:44}} />
+            <img src={IMGS.logo} alt="Exitus" className="nav-logo" style={{height:56}} />
           </div>
           <div className="mhide" style={{display:"flex",gap:20,alignItems:"center"}}>
             {links.map(n=>
@@ -373,25 +373,31 @@ const Hero = () => (
     <div className="g2 hero-inner" style={{maxWidth:1320,margin:"0 auto",padding:"60px 48px 120px",width:"100%",display:"grid",gridTemplateColumns:"1.2fr .8fr",gap:72,alignItems:"center",position:"relative",zIndex:3}}>
       <div className="mc">
         <R delay={.05}>
-          <p style={{fontSize:13,fontWeight:700,letterSpacing:3,textTransform:"uppercase",color:C.mag,marginBottom:20}}>Aprendizagem Acelerada &nbsp;|&nbsp; IA</p>
+          <p style={{fontSize:13,fontWeight:700,letterSpacing:3,textTransform:"uppercase",color:C.mag,marginBottom:20}}>IA para ampliar o alcance pedagógico</p>
         </R>
         <R delay={.12}>
-          <h1 className="ff hero-t" style={{fontSize:"clamp(32px,4.5vw,54px)",color:C.white,lineHeight:1.22,marginBottom:32,fontWeight:700}}>
-            Uma plataforma que maximiza o aprendizado do aluno e estende o alcance do professor.
+          <h1 className="ff hero-t" style={{fontSize:"clamp(32px,4.5vw,54px)",color:C.white,lineHeight:1.22,marginBottom:24,fontWeight:700}}>
+            O aprendizado do aluno não se limita à sala de aula.<br/>
+            <span style={{color:"#ffffffaa",fontWeight:400}}>Mas existe um limite estrutural para acompanhar isso em escala.</span>
           </h1>
         </R>
-        <R delay={.2}>
-          <p style={{fontSize:17,color:"#fffc",lineHeight:1.85,marginBottom:44,maxWidth:520,fontWeight:300}}>
-            Utilizando a IA com segurança e controle, respeitando os valores da escola e da família.
+        <R delay={.18}>
+          <p style={{fontSize:18,color:"#fffc",lineHeight:1.7,marginBottom:8,maxWidth:520,fontWeight:400}}>
+            Não por falta de esforço.<br/>Mas por falta de estrutura.
           </p>
         </R>
-        <R delay={.26}>
+        <R delay={.22}>
+          <p style={{fontSize:15,color:`${C.mag}cc`,lineHeight:1.7,marginBottom:36,maxWidth:520,fontWeight:500,fontStyle:"italic"}}>
+            É exatamente nesse ponto que a educação começa a mudar.
+          </p>
+        </R>
+        <R delay={.28}>
           <div className="hero-btns" style={{display:"flex",gap:16,flexWrap:"wrap",marginBottom:40}}>
             <button className="btn-m" onClick={()=>scroll("contato")}>Agendar Demonstração <span style={{fontSize:16}}>→</span></button>
             <button className="btn-g" onClick={()=>scroll("como-funciona")}>Como Funciona</button>
           </div>
         </R>
-        <R delay={.34}>
+        <R delay={.36}>
           <div className="hero-badge" onClick={()=>scroll("prova-social")} style={{cursor:"pointer",display:"inline-flex",alignItems:"center",gap:14,padding:"14px 28px",borderRadius:60,border:"1px solid #fff15",background:"#fff08",transition:"all .3s"}}>
             <span style={{fontSize:16}}>🏆</span>
             <span style={{fontSize:13,color:"#fffa"}}>Desenvolvido com o <strong style={{color:"#ffff",fontWeight:600}}>Colégio Christus</strong> — 1º lugar ENEM 2024</span>
@@ -430,25 +436,33 @@ const Marquee = () => {
 };
 
 /* ══════════════════════════════════════════════════
-   2. PROBLEMA — Layout 2 colunas, escaneável
+   2a. PROBLEMA — Quebra 1: Necessidade de personalização
    ══════════════════════════════════════════════════ */
 const Problema = () => (
+  <>
   <section id="problema" className="sp" style={{background:C.off,padding:"140px 48px",position:"relative",overflow:"hidden"}}>
     <div className="orb" style={{width:300,height:300,background:C.mag,top:"10%",right:"-8%",opacity:.03}} />
     <div className="sec-center" style={{maxWidth:1100,margin:"0 auto",position:"relative",zIndex:1}}>
       <R><div className="tag">O Problema</div></R>
 
-      {/* Título */}
+      {/* Headline */}
       <R delay={.06}>
-        <h2 className="ff big-t" style={{fontSize:"clamp(30px,4.8vw,48px)",color:C.navy,lineHeight:1.2,marginBottom:56,fontWeight:700,maxWidth:900}}>
-          Cada aluno aprende de um jeito,{" "}
-          <span style={{color:C.faint,fontWeight:400}}>mas nos últimos 200 anos a escola foi obrigada a ensinar todos da mesma forma.</span>
+        <h2 className="ff big-t" style={{fontSize:"clamp(30px,4.8vw,48px)",color:C.navy,lineHeight:1.2,marginBottom:20,fontWeight:700,maxWidth:900}}>
+          <strong>Cada aluno aprende de um jeito</strong>{" "}
+          <span style={{color:C.faint,fontWeight:400}}>e as escolas que mais se destacam sabem disso há muito tempo.</span>
         </h2>
       </R>
 
+      {/* Subheadline */}
+      <R delay={.1}>
+        <p style={{fontSize:17,color:C.muted,lineHeight:1.85,marginBottom:40,maxWidth:860}}>
+          Por isso, criaram ao longo do tempo soluções como reforço, plantões, turmas avançadas e preparação para olimpíadas e vestibulares de alta concorrência.
+        </p>
+      </R>
+
       {/* 4 cards — grid 2x2 */}
-      <R delay={.12}>
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20,marginBottom:56}} className="g2">
+      <R delay={.14}>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20,marginBottom:48}} className="g2">
           {[
             "Os alunos acumulam lacunas silenciosas — aprendem em ritmos e formas diferentes, mas ninguém percebe quando algo ficou para trás",
             "O professor só descobre o problema na hora da prova — sem como acompanhar a progressão individual de cada aluno ao longo do caminho",
@@ -465,18 +479,63 @@ const Problema = () => (
         </div>
       </R>
 
-      {/* Stat footnote */}
+      {/* Fechamento */}
       <R delay={.2}>
-        <div style={{borderTop:`1px solid #0001`,paddingTop:32}}>
-          <p style={{fontSize:16,color:C.navy,lineHeight:1.6,maxWidth:860}}>
-            <span style={{color:C.mag,fontWeight:700}}>84%</span> dos alunos já usam IA para estudar, mas apenas{" "}
-            <span style={{color:C.mag,fontWeight:700}}>32%</span> receberam alguma orientação da escola — sem supervisão estruturada por pais ou pela instituição.
+        <div style={{borderTop:`2px solid ${C.mag}20`,paddingTop:32}}>
+          <p style={{fontSize:17,color:C.navy,lineHeight:1.7,maxWidth:860,fontWeight:500}}>
+            Mas esse modelo tem limites: depende de mais tempo, mais estrutura e mais custo, além de não chegar ao nível de tutoria individual.
           </p>
-          <p style={{fontSize:13,color:C.muted,marginTop:8}}>Fundação Itaú, 2025</p>
         </div>
       </R>
     </div>
   </section>
+
+  {/* ══════════════════════════════════════════════════
+      2b. PROBLEMA — Quebra 2: IA sem controle
+      ══════════════════════════════════════════════════ */}
+  <section id="problema-ia" className="sp grain" style={{background:`linear-gradient(160deg,${C.navy},${C.deep})`,padding:"120px 48px",position:"relative",overflow:"hidden"}}>
+    <div className="orb" style={{width:400,height:400,background:C.mag,top:"-10%",right:"-5%",opacity:.05}} />
+    <div style={{maxWidth:1000,margin:"0 auto",position:"relative",zIndex:1}}>
+      {/* Headline */}
+      <R delay={.04}>
+        <h2 className="ff big-t" style={{fontSize:"clamp(28px,4vw,44px)",color:C.white,lineHeight:1.25,marginBottom:32,fontWeight:700,maxWidth:780}}>
+          Hoje, o aluno já usa IA para estudar, mas esse processo acontece{" "}
+          <span style={{color:C.mag}}>fora do controle da escola.</span>
+        </h2>
+      </R>
+
+      {/* 3 bullets */}
+      <R delay={.1}>
+        <div style={{display:"flex",flexDirection:"column",gap:16,marginBottom:48}}>
+          {["Sem mediação.","Sem critério pedagógico.","Sem visibilidade."].map((item,i)=>(
+            <div key={i} style={{display:"flex",alignItems:"center",gap:16}}>
+              <div style={{width:8,height:8,borderRadius:"50%",background:C.mag,flexShrink:0}} />
+              <p style={{fontSize:20,color:"#fff",fontWeight:600,fontFamily:"'Sora',sans-serif"}}>{item}</p>
+            </div>
+          ))}
+        </div>
+      </R>
+
+      {/* Fechamento */}
+      <R delay={.16}>
+        <p style={{fontSize:18,color:"#fff9",lineHeight:1.75,marginBottom:40,maxWidth:760,fontWeight:400}}>
+          A escola continua responsável pelo resultado. Mas perdeu parte do controle do processo.
+        </p>
+      </R>
+
+      {/* Stat 84% */}
+      <R delay={.22}>
+        <div style={{background:"#ffffff0a",border:`1px solid ${C.mag}30`,borderRadius:20,padding:"28px 32px",display:"inline-block"}}>
+          <p style={{fontSize:16,color:"#fff9",lineHeight:1.6,maxWidth:760}}>
+            <span style={{color:C.mag,fontWeight:800,fontSize:28}}>84%</span>{" "}dos alunos já usam IA para estudar, mas apenas{" "}
+            <span style={{color:C.mag,fontWeight:700}}>32%</span> receberam alguma orientação da escola — sem supervisão estruturada por pais ou pela instituição.
+          </p>
+          <p style={{fontSize:13,color:"#fff4",marginTop:8}}>Fundação Itaú, 2025</p>
+        </div>
+      </R>
+    </div>
+  </section>
+  </>
 );
 
 /* ══════════════════════════════════════════════════
@@ -509,7 +568,7 @@ const Solucao = () => (
         </R>
         <R delay={.12}>
           <p style={{fontSize:17,color:C.muted,lineHeight:1.9,marginBottom:8}}>O Exitus utiliza os conteúdos educacionais gerados pela escola e pelos professores para personalizar materiais, gerar planejamento individualizado e oferecer tutoria pedagógica 24/7.</p>
-          <p style={{fontSize:17,color:C.text,lineHeight:1.9}}>O coração do sistema é o <strong>plano pedagógico da escola</strong>. Não impõe um método — potencializa o que a família já escolheu.</p>
+          <p style={{fontSize:17,color:C.text,lineHeight:1.9}}>O coração do sistema é o <strong>plano pedagógico da escola</strong>. Não impõe um método — potencializa o que a família do aluno já escolheu.</p>
         </R>
       </div>
 
@@ -524,30 +583,33 @@ const Solucao = () => (
         </R>
       </div>
 
-      {/* Features */}
-      <R><h3 className="ff" style={{fontSize:28,color:C.navy,marginBottom:48,fontWeight:600}}>O que a plataforma entrega</h3></R>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}} className="g2">
-        {[
-          {n:"01",title:"Roteiro personalizado e diário",desc:"Espaçamento ideal para memórias de longo prazo, gerado para cada aluno individualmente.",c:C.mag,bg:`linear-gradient(135deg,${C.navy},#0e1235)`},
-          {n:"02",title:"Revisão estruturada das aulas",desc:"Conteúdo reexplicado usando os interesses pessoais do aluno para aumentar retenção.",c:C.acc,bg:`linear-gradient(135deg,${C.navy},#081030)`},
-          {n:"03",title:"Questões adaptativas + Flashcards",desc:"Calibradas pela Taxonomia de Bloom. Princípio MECE nos flashcards: todos os conceitos, sem repetição.",c:C.gold,bg:`linear-gradient(135deg,${C.navy},#0c1028)`},
-          {n:"04",title:"Tutor virtual pedagógico 24/7",desc:"Tia Chris e Tio Bento. Mediação socrática que guia o raciocínio sem entregar respostas prontas.",c:"#2b8a6e",bg:`linear-gradient(135deg,${C.navy},#081525)`},
-        ].map((f,i)=>(
-          <R key={i} delay={.04*i}>
-            <GlowCard color={f.c} bg={f.bg}>
-              <div style={{position:"absolute",top:0,left:0,width:"100%",height:3,background:`linear-gradient(90deg,${f.c},${f.c}44)`}} />
-              <div style={{position:"absolute",top:20,right:24}}>
-                <span className="ff" style={{fontSize:48,fontWeight:800,color:f.c,opacity:.15,lineHeight:1}}>{f.n}</span>
-              </div>
-              <div style={{display:"inline-flex",alignItems:"center",justifyContent:"center",width:44,height:44,borderRadius:12,background:f.c+"20",marginBottom:20}}>
-                <div style={{width:10,height:10,borderRadius:"50%",background:f.c}} />
-              </div>
-              <h4 style={{fontSize:18,fontWeight:700,color:"#fff",marginBottom:10}}>{f.title}</h4>
-              <p style={{fontSize:14,color:"#fff9",lineHeight:1.75}}>{f.desc}</p>
-            </GlowCard>
-          </R>
-        ))}
-      </div>
+      {/* Aqui — Nova camada */}
+      <R delay={.2}>
+        <div style={{maxWidth:900,margin:"0 auto",textAlign:"center",padding:"60px 0 20px"}}>
+          <p style={{fontSize:13,fontWeight:700,letterSpacing:3,textTransform:"uppercase",color:C.mag,marginBottom:20}}>Foi para resolver esse ponto que surgiu o Exitus.</p>
+          <h2 className="ff big-t" style={{fontSize:"clamp(30px,4vw,48px)",color:C.navy,lineHeight:1.2,marginBottom:16,fontWeight:700}}>
+            Não é uma ferramenta.<br/>
+            <span style={{color:C.acc}}>É uma nova camada dentro da escola.</span>
+          </h2>
+          <p style={{fontSize:18,color:C.muted,lineHeight:1.8,marginBottom:40,maxWidth:700,margin:"0 auto 40px"}}>
+            Um modelo que amplia o aprendizado além da sala de aula, sem perder o controle pedagógico.
+          </p>
+        </div>
+      </R>
+      <R delay={.26}>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:24,maxWidth:900,margin:"0 auto"}} className="g2">
+          <div style={{background:C.off,borderRadius:20,padding:"36px 32px",borderLeft:`4px solid ${C.mag}`}}>
+            <p style={{fontSize:16,color:C.navy,lineHeight:1.8,fontWeight:500}}>
+              Integrado ao que a escola já faz. Sem criar ruptura ou novas demandas para o time pedagógico.
+            </p>
+          </div>
+          <div style={{background:C.navy,borderRadius:20,padding:"36px 32px",borderLeft:`4px solid ${C.acc}`}}>
+            <p style={{fontSize:16,color:"#fff",lineHeight:1.8,fontWeight:500}}>
+              Não substitui o professor. Amplia o que ele já constrói em sala.
+            </p>
+          </div>
+        </div>
+      </R>
     </div>
   </section>
 );
@@ -557,22 +619,22 @@ const Solucao = () => (
    ══════════════════════════════════════════════════ */
 const plataformaTabs = [
   {
-    n:"01",title:"Revisão Diária",sub:"Para quem quer consistência",
+    n:"01",title:"Revisão Diária",sub:"Para quem tem consistência",
     color:C.mag,
-    desc:"Aula dada é aula estudada. A plataforma acompanha a agenda escolar e propõe revisões rápidas e inteligentes dos conteúdos mais recentes — consolidando o aprendizado enquanto ele ainda está fresco.",
+    desc:"Aula dada é aula estudada. A plataforma acompanha a agenda escolar e propõe revisões rápidas e inteligentes dos conteúdos mais recentes, consolidando o aprendizado enquanto ele ainda está fresco.",
     checks:["Revisões automáticas após cada aula","Conteúdo organizado pela agenda escolar","Hábito de estudo construído dia a dia","Feedback imediato a cada atividade"]
   },
   {
     n:"02",title:"Revisão para a Prova",sub:"Para quem precisa de foco",
     color:"#c4724a",
-    desc:"Para quem tem prova chegando. O algoritmo agrupa os conteúdos por avaliação, prioriza o calendário e garante que o aluno revise o que realmente importa — reduzindo ansiedade e chegando preparado.",
+    desc:"Para quem tem prova chegando. O algoritmo agrupa os conteúdos por avaliação, prioriza o calendário e garante que o aluno revise o que realmente importa, reduzindo ansiedade e chegando preparado.",
     checks:["Conteúdos agrupados por avaliação","Prioridade automática pelo calendário","Foco no que cai na prova","Reduz ansiedade pré-prova"]
   },
   {
     n:"03",title:"Alta Performance",sub:"Para quem quer ir além",
     color:"#2b8a6e",
-    desc:"Para alunos que miram o ENEM e os grandes vestibulares. O Exitus organiza automaticamente os conteúdos que maximizam a retenção de longo prazo — uma trilha inteligente e adaptativa para quem quer disputar as melhores vagas.",
-    checks:["Preparação estruturada para ENEM e vestibulares","Trilha adaptativa de longo prazo","Maximiza retenção com base em neurociência","Evolução contínua e mensurável"]
+    desc:"Para alunos que miram nos vestibulares mais concorridos. O Exitus organiza automaticamente os conteúdos para maximizar a retenção de longo prazo, com revisões espaçadas. Uma trilha inteligente e adaptativa para quem quer estudar nos cursos e faculdades mais disputados.",
+    checks:["Preparação estruturada para ENEM e vestibulares","Trilha adaptativa de longo prazo","Revisões espaçadas para retenção máxima","Evolução contínua e mensurável"]
   },
 ];
 
@@ -825,19 +887,25 @@ const Seguranca = () => (
           </h2></R>
           <R delay={.1}>
             <p style={{fontSize:17,color:C.muted,lineHeight:1.9,marginBottom:20}}>
-              Usamos o que há de mais moderno para garantir interações seguras: <strong style={{color:C.navy}}>fluxos multi-agente com gatekeepers e guardrails</strong> em cada camada. Em nenhuma interação com os tutores virtuais o aluno poderá abordar temas que fujam ao conteúdo pedagógico.
+              Usamos o que há de mais moderno para garantir interações seguras. Em nenhuma interação com os tutores virtuais o aluno poderá abordar temas que fujam ao conteúdo pedagógico.
             </p>
-            <p style={{fontSize:17,color:C.muted,lineHeight:1.9}}>
+            <p style={{fontSize:17,color:C.muted,lineHeight:1.9,marginBottom:20}}>
               Também acreditamos no <strong style={{color:C.navy}}>letramento em IA</strong> como competência do futuro, e no letramento digital como requisito legal do presente.
             </p>
+            <div style={{background:`${C.navy}08`,borderRadius:16,padding:"20px 24px",borderLeft:`3px solid ${C.mag}`}}>
+              <h4 style={{fontSize:15,fontWeight:700,color:C.navy,marginBottom:8}}>Uso de tecnologia calma</h4>
+              <p style={{fontSize:14,color:C.muted,lineHeight:1.65}}>
+                Entendemos que o uso indiscriminado de telas traz malefícios. Não ofertamos o Exitus para alunos do Ensino Fundamental I — nossa solução traz benefícios acadêmicos reais e atenua os aspectos negativos, garantindo um saldo positivo para nossos alunos.
+              </p>
+            </div>
           </R>
         </div>
         <R delay={.12}>
           <div className="seg-inner" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
             {[
-              {t:"Fluxo multi-agente",d:"Gatekeepers e guardrails validam cada resposta antes de chegar ao aluno.",c:C.mag},
               {t:"Somente temas pedagógicos",d:"Os tutores não desviam para conteúdo fora da sala de aula — nunca.",c:C.acc},
               {t:"Letramento em IA",d:"Competência do futuro — ensinamos o uso crítico e responsável da IA.",c:C.gold},
+              {t:"Sem gamificação",d:"Não usamos incentivos artificiais dopaminérgicos. Acreditamos que o aprendizado é fim, nunca meio.",c:C.mag},
               {t:"Letramento digital",d:"Requisito legal atual — conformidade com as tendências regulatórias.",c:"#2b8a6e"},
             ].map((item,i)=>(
               <div key={i} style={{padding:24,borderRadius:18,background:C.white,border:"1px solid #0001",transition:"all .35s ease",textAlign:"center"}}
